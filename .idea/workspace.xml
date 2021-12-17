@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca71d53b-12a0-44ec-bf69-2df82e782bdc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/action.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/faction.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/ship.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20211217172502_create_ships.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20211217181919_create_factions.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20211217181927_create_actions.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ships.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/fixtures/actions.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/fixtures/factions.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/fixtures/ships.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/action_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/faction_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/ship_test.rb" afterDir="false" />
+    <list default="true" id="ca71d53b-12a0-44ec-bf69-2df82e782bdc" name="Changes" comment="building out xwing data model">
+      <change afterPath="$PROJECT_DIR$/db/library/actions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/library/factions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/lib_loader.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,8 +178,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1639716444559</updated>
-      <workItem from="1639716446976" duration="8537000" />
+      <workItem from="1639716446976" duration="12075000" />
     </task>
+    <task id="LOCAL-00001" summary="building out xwing data model">
+      <created>1639765861192</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1639765861192</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,5 +206,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="building out xwing data model" />
+    <option name="LAST_COMMIT_MESSAGE" value="building out xwing data model" />
   </component>
 </project>
