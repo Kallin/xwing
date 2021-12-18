@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Rails xwing: development" uuid="c5dfee06-6217-4d13-9ac3-f25bb2a4b622">
+    <data-source source="LOCAL" name="development.sqlite3" uuid="87c0567b-a9eb-4813-b8ab-aa0b381139d4">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:\\wsl$\Ubuntu\home\kallin\codes\xwing\db\development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:/development.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

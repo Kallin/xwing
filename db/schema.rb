@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_181927) do
+ActiveRecord::Schema.define(version: 2021_12_18_034308) do
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
@@ -18,28 +18,20 @@ ActiveRecord::Schema.define(version: 2021_12_17_181927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.string "commenter"
-    t.text "body"
-    t.integer "article_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
-    t.index ["article_id"], name: "index_comments_on_article_id"
+  create_table "actions_ships", id: false, force: :cascade do |t|
+    t.integer "ship_id", null: false
+    t.integer "action_id", null: false
   end
 
   create_table "factions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "factions_ships", id: false, force: :cascade do |t|
+    t.integer "ship_id", null: false
+    t.integer "faction_id", null: false
   end
 
   create_table "ships", force: :cascade do |t|
@@ -52,5 +44,4 @@ ActiveRecord::Schema.define(version: 2021_12_17_181927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "comments", "articles"
 end
