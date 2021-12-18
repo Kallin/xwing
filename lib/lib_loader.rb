@@ -1,8 +1,8 @@
 class LibLoader
 
   def load_ships
-    ships = load_from_input_file
-    mapped_ships = ships.map do |ship|
+    input_ships = load_from_input_file
+    mapped_ships = input_ships.map do |ship|
       {
         name: ship['name'],
         attack: ship['attack'],
@@ -11,6 +11,12 @@ class LibLoader
       }
     end
     Ship.insert_all(mapped_ships)
+
+    Ship.find_each do |ship|
+      input_ship = input_ships.find { |input_ship| input_ship['name'] == ship.name }
+      input_ship['actions'].each { |input_action| ship.actions << (Action.find_by name: input_action) }
+      input_ship['factions'].each { |input_faction| ship.factions << (Faction.find_by name: input_faction) }
+    end
   end
 
   def load_factions
@@ -52,7 +58,7 @@ class LibLoader
 
   def load_from_input_file
     text = File.read('ships.json')
-    ships = JSON.parse(text).values[0].values
+    JSON.parse(text).values[0].values
   end
 
 end
