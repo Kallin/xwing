@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  root "articles#index"
+  root "ships#index"
   
-  resources :articles do
-    resources :comments
-  end
+  resources :ships
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,11 @@
+<h1>Ships</h1>
+
+We have <%= Ship.count %> ships and counting!
+
+<ul>
+  <% @ships.each do |ship| %>
+    <li>
+      <%= link_to ship.name, ship %>
+    </li>
+  <% end %>
+</ul>
