@@ -1,8 +1,7 @@
-<h1>Ships</h1>
+<h1 class="block">Ships</h1>
+<div>We have <%= Ship.count %> ships and counting!</div>
 
-We have <%= Ship.count %> ships and counting!
-
-<ul>
+<ul class="list-disc">
   <% @ships.each do |ship| %>
     <li>
       <%= link_to ship.name, ship %>

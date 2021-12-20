@@ -161,6 +161,8 @@ GEM
     sqlite3 (1.4.2)
     stimulus-rails (1.0.0)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.2-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.1.0)
     turbo-rails (1.0.0)
       actionpack (>= 6.0.0)
@@ -198,6 +200,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
   web-console
