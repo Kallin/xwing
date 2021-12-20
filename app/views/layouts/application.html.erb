@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>X-Wing Hanger</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<head>
+  <meta charset="utf-8">
+  <title>X-Wing Hanger</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5">
-      <%= yield %>
-    </main>
-  </body>
+<body>
+<main class="container mx-auto mt-28 px-5">
+  <div>
+    <% if user_signed_in? %>
+      <%= current_user.email %>
+    <% end %>
+  </div>
+  <%= yield %>
+</main>
+</body>
 </html>

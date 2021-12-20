@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root "ships#index"
+  devise_for :users
+
+  root to: "ships#index"
+
+  # root "ships#index"
   
   resources :ships
   
