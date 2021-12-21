@@ -14,11 +14,21 @@
 
 <body>
 <main class="container mx-auto mt-28 px-5">
-  <div>
+  <div id="profile">
     <% if user_signed_in? %>
-      <%= current_user.email %>
+      <%= current_user.email %> : <%= button_to "logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "login", new_user_session_path %>
     <% end %>
   </div>
+  <nav>
+    <ul>
+      <li><%= link_to "ships", ships_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "collection", collection_path %></li>
+      <% end %>
+    </ul>
+  </nav>
   <%= yield %>
 </main>
 </body>

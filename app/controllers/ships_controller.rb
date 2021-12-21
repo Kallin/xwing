@@ -1,7 +1,5 @@
 class ShipsController < ApplicationController
 
-  before_action :authenticate_user!
-
   def index
     @ships = Ship.all
   end
