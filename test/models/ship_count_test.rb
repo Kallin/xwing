@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ShipTotalTest < ActiveSupport::TestCase
+class ShipCountTest < ActiveSupport::TestCase
 
   test "ship counts can be tallied" do
     (user = User.new(email: 'test@tester.com', password: 'password')).save!

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_192741) do
+ActiveRecord::Schema.define(version: 2021_12_21_030249) do
 
   create_table "actions", force: :cascade do |t|
     t.string "name"
@@ -41,14 +41,14 @@ ActiveRecord::Schema.define(version: 2021_12_20_192741) do
     t.integer "faction_id", null: false
   end
 
-  create_table "ship_totals", force: :cascade do |t|
+  create_table "ship_counts", force: :cascade do |t|
     t.integer "ship_id", null: false
     t.integer "collection_id", null: false
-    t.integer "total"
+    t.integer "count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["collection_id"], name: "index_ship_totals_on_collection_id"
-    t.index ["ship_id"], name: "index_ship_totals_on_ship_id"
+    t.index ["collection_id"], name: "index_ship_counts_on_collection_id"
+    t.index ["ship_id"], name: "index_ship_counts_on_ship_id"
   end
 
   create_table "ships", force: :cascade do |t|
@@ -74,6 +74,6 @@ ActiveRecord::Schema.define(version: 2021_12_20_192741) do
   end
 
   add_foreign_key "collections", "users"
-  add_foreign_key "ship_totals", "collections"
-  add_foreign_key "ship_totals", "ships"
+  add_foreign_key "ship_counts", "collections"
+  add_foreign_key "ship_counts", "ships"
 end

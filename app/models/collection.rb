@@ -1,14 +1,14 @@
 class Collection < ApplicationRecord
   belongs_to :user
-  has_many :ship_totals
+  has_many :ship_counts
 
   def add_ship(ship)
-    ship_total = ship_totals.find_or_create_by(ship: ship)
-    ship_total.total += 1
-    ship_total.save!
+    ship_count = ship_counts.find_or_create_by(ship: ship)
+    ship_count.count += 1
+    ship_count.save!
   end
 
   def total_ship_count
-    ship_totals.sum(:total)
+    ship_counts.sum(:count)
   end
 end
