@@ -18,5 +18,5 @@ Layout/LineLength:
 Style/Documentation:
   Enabled: false
 
-Style/EndOfLine:
+Layout/EndOfLine:
   EnforcedStyle: lf
