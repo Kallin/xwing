@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateJoinTableShipFAction < ActiveRecord::Migration[7.0]
   def change
     create_join_table :ships, :factions do |t|

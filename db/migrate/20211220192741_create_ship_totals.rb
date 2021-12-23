@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateShipTotals < ActiveRecord::Migration[7.0]
   def change
     create_table :ship_totals do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LibLoader
   def load_ships
     input_ships = load_from_input_file
@@ -44,9 +46,7 @@ class LibLoader
   end
 
   def delete_all
-    [Faction, Action, Ship].each do |klazz|
-      klazz.delete_all
-    end
+    [Faction, Action, Ship].each(&:delete_all)
   end
 
   def load_all

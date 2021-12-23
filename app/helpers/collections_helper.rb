@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CollectionsHelper
   def ship_count(ship)
     ship_count = @ship_counts.find { |ship_count| ship_count.ship_id == ship.id }

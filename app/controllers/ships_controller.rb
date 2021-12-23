@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShipsController < ApplicationController
   def index
     @ships = Ship.all

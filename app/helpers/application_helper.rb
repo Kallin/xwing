@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def nav_controller_class(controller)
     if params[:controller] == controller
