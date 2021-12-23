@@ -1,5 +1,4 @@
 class CollectionsController < ApplicationController
-
   before_action :authenticate_user!
 
   def show
@@ -28,6 +27,4 @@ class CollectionsController < ApplicationController
     @ships = Ship.all
     render 'show'
   end
-
-
 end

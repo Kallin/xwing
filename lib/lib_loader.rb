@@ -1,5 +1,4 @@
 class LibLoader
-
   def load_ships
     input_ships = load_from_input_file
     mapped_ships = input_ships.map do |ship|
@@ -7,7 +6,7 @@ class LibLoader
         name: ship['name'],
         attack: ship['attack'],
         agility: ship['agility'],
-        hull: ship['hull'],
+        hull: ship['hull']
       }
     end
     Ship.insert_all(mapped_ships)
@@ -60,5 +59,4 @@ class LibLoader
     text = File.read('ships.json')
     JSON.parse(text).values[0].values
   end
-
 end

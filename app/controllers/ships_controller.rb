@@ -1,5 +1,4 @@
 class ShipsController < ApplicationController
-
   def index
     @ships = Ship.all
   end
@@ -7,5 +6,4 @@ class ShipsController < ApplicationController
   def show
     @ship = Ship.find(params[:id])
   end
-
 end

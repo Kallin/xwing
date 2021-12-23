@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "ships#index"
+  root to: 'ships#index'
 
   # root "ships#index"
-  
+
   resources :ships
 
   get '/collection', to: 'collections#show', as: 'collection'
