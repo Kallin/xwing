@@ -79,3 +79,5 @@ gem 'tailwindcss-rails', '~> 2.0'
 gem 'devise'
 
 gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
