@@ -1,0 +1,15 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'test/fixtures/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'config/**/*'
+
+Layout/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false

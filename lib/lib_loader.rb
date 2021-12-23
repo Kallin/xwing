@@ -14,7 +14,7 @@ class LibLoader
     Ship.insert_all(mapped_ships)
 
     Ship.find_each do |ship|
-      input_ship = input_ships.find { |input_ship| input_ship['name'] == ship.name }
+      input_ship = input_ships.find { |the_ship| the_ship['name'] == ship.name }
       input_ship['actions'].each { |input_action| ship.actions << (Action.find_by name: input_action) }
       input_ship['factions'].each { |input_faction| ship.factions << (Faction.find_by name: input_faction) }
     end
