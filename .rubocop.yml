@@ -11,6 +11,7 @@ AllCops:
     - 'log/**/*'
     - 'tmp/**/*'
     - 'config/**/*'
+    - 'vendor/**/*'
 
 Layout/LineLength:
   Max: 120
