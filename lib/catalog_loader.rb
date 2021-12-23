@@ -1,4 +1,4 @@
-class CatalogImporter
+class CatalogLoader
 
   attr_accessor :input_pilots, :input_upgrades, :input_actions, :input_quick_builds
 
