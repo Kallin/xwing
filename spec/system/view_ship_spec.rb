@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'viewing a ship', type: :system do
+RSpec.describe 'viewing a ship' do
   it 'allows a user to view a ship' do
     visit ships_path
     click_on('X-Wing')

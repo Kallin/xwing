@@ -61,4 +61,5 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
   #
   Rails.application.config.hosts << 'www.example.com'
+  Rails.application.config.hosts << '127.0.0.1'
 end
