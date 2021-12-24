@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require './lib/catalog_loader'
+require './lib/catalog/loader'
 
-RSpec.describe CatalogLoader do
+RSpec.describe Catalog::Loader do
   it 'is able to load and parse all input files' do
-    loader = CatalogLoader.new
+    loader = Catalog::Loader.new
 
     loader.collect_entities_from_input_files
 
