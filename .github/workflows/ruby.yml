@@ -8,4 +8,6 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
+    - name: Start containers
+      run: docker-compose up -d
     - run: bundle exec rake
