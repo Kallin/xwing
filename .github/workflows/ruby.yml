@@ -10,4 +10,5 @@ jobs:
         bundler-cache: true
     - name: Start containers
       run: docker-compose up -d
+    - run: bundle exec rake db:test:load     
     - run: bundle exec rake
