@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,69 +10,92 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_221_030_249) do
-  create_table 'actions', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+ActiveRecord::Schema.define(version: 2021_12_21_030249) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'actions_ships', id: false, force: :cascade do |t|
-    t.integer 'ship_id', null: false
-    t.integer 'action_id', null: false
+  create_table "actions_ships", id: false, force: :cascade do |t|
+    t.bigint "ship_id", null: false
+    t.bigint "action_id", null: false
   end
 
-  create_table 'collections', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_collections_on_user_id'
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
   end
 
-  create_table 'factions', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "collections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
-  create_table 'factions_ships', id: false, force: :cascade do |t|
-    t.integer 'ship_id', null: false
-    t.integer 'faction_id', null: false
+  create_table "comments", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body"
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
-  create_table 'ship_counts', force: :cascade do |t|
-    t.integer 'ship_id', null: false
-    t.integer 'collection_id', null: false
-    t.integer 'count'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['collection_id'], name: 'index_ship_counts_on_collection_id'
-    t.index ['ship_id'], name: 'index_ship_counts_on_ship_id'
+  create_table "factions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'ships', force: :cascade do |t|
-    t.string 'name'
-    t.integer 'attack'
-    t.integer 'hull'
-    t.integer 'shields'
-    t.integer 'agility'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "factions_ships", id: false, force: :cascade do |t|
+    t.bigint "ship_id", null: false
+    t.bigint "faction_id", null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at', precision: 6
-    t.datetime 'remember_created_at', precision: 6
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "ship_counts", force: :cascade do |t|
+    t.bigint "ship_id", null: false
+    t.bigint "collection_id", null: false
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collection_id"], name: "index_ship_counts_on_collection_id"
+    t.index ["ship_id"], name: "index_ship_counts_on_ship_id"
   end
 
-  add_foreign_key 'collections', 'users'
-  add_foreign_key 'ship_counts', 'collections'
-  add_foreign_key 'ship_counts', 'ships'
+  create_table "ships", force: :cascade do |t|
+    t.string "name"
+    t.integer "attack"
+    t.integer "hull"
+    t.integer "shields"
+    t.integer "agility"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "collections", "users"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "ship_counts", "collections"
+  add_foreign_key "ship_counts", "ships"
 end

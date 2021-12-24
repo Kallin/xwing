@@ -5,8 +5,8 @@ require "capybara-screenshot/rspec"
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
     driven_by :apparition
+    config.include Devise::Test::IntegrationHelpers
   end
 end
 
