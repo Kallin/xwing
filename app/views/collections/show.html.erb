@@ -4,7 +4,7 @@
     <% @ships.each do |ship| %>
       <li>
         <%= button_to "-", collection_remove_ship_path(ship), class: "rounded px-4 py-2 text-xs bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300", form_class: "inline" %>
-        <%= ship_count(ship) %>
+        <%= ship_count(ship, @ship_counts) %>
         <%= button_to "+", collection_add_ship_path(ship), class: "rounded px-4 py-2 text-xs bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300", form_class: "inline" %>
         <%= ship.name %>
       </li>
