@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'with users and roles' do
-
   # def log_in_as(user)
   #   visit new_user_session_path
   #   fill_in('user_email', with: user.email)

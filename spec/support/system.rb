@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 require 'capybara/apparition'
 require 'capybara/rspec'
-require "capybara-screenshot/rspec"
+require 'capybara-screenshot/rspec'
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
@@ -9,7 +10,3 @@ RSpec.configure do |config|
     config.include Devise::Test::IntegrationHelpers
   end
 end
-
-
-
-

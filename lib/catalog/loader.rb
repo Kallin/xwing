@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Catalog
   class Loader
     attr_accessor :input_pilots, :input_upgrades, :input_actions, :input_quick_builds
@@ -29,5 +30,4 @@ module Catalog
       Rails.root.join('db', 'catalog', 'xwing-data2', folder)
     end
   end
-
 end

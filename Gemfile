@@ -53,8 +53,8 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -70,9 +70,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'apparition', github: 'twalpole/apparition', ref: 'ca86be4d54af835d531dbcd2b86e7b2c77f85f34'
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'apparition', github: 'twalpole/apparition', ref: 'ca86be4d54af835d531dbcd2b86e7b2c77f85f34'
   gem 'webdrivers'
 end
 
@@ -80,7 +80,7 @@ gem 'tailwindcss-rails', '~> 2.0'
 
 gem 'devise'
 
+gem 'pg'
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
-gem 'pg'
