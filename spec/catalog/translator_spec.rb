@@ -6,7 +6,7 @@ require './lib/catalog/translator'
 RSpec.describe Catalog::Translator do # rubocop:todo Metrics/BlockLength
   # rubocop:todo Metrics/BlockLength
   it 'is able to translate raw loader hash inputs into data ready for DB import' do
-    translator = Catalog::Translator.new
+    translator = described_class.new
 
     input_pilot_1 = { 'name' => 'Gozanti-class Cruiser', # rubocop:todo Naming/VariableNumber
                       'xws' => 'gozanticlasscruiser',

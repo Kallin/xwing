@@ -5,7 +5,7 @@ require './lib/catalog/loader'
 
 RSpec.describe Catalog::Loader do
   it 'is able to load and parse all input files' do
-    loader = Catalog::Loader.new
+    loader = described_class.new
 
     loader.collect_entities_from_input_files
 
