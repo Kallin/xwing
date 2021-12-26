@@ -2,7 +2,7 @@
 
 class Collection < ApplicationRecord
   belongs_to :user
-  has_many :ship_counts
+  has_many :ship_counts, dependent: :destroy
 
   def add_ship(ship)
     ship_count = ship_counts.find_or_create_by(ship: ship)
