@@ -1,14 +1,14 @@
 name: ruby
-on: [push, pull_request]
+on: [ push, pull_request ]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
-    - name: Start containers
-      run: docker-compose up -d
-    - run: bundle exec rake db:test:load     
-    - run: bundle exec rake
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Start containers
+        run: docker-compose up -d
+      - run: bundle exec rake db:test:load
+      - run: bundle exec rake
