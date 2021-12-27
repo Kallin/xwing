@@ -26,3 +26,6 @@ MultipleMemoizedHelpers:
 
 Layout/EndOfLine:
   EnforcedStyle: lf
+
+Metrics/BlockLength:
+  IgnoredMethods: [ 'describe', 'context' ]

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require './lib/catalog/translator'
 
-RSpec.describe Catalog::Translator do # rubocop:todo Metrics/BlockLength
+RSpec.describe Catalog::Translator do
   let(:input_pilot1) do
     { 'name' => 'Gozanti-class Cruiser',
       'xws' => 'gozanticlasscruiser',
