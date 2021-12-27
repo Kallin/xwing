@@ -2,12 +2,20 @@
 
 module Catalog
   class Translator
-    attr_accessor :input_pilots, :ships, :pilots
+    attr_accessor :input_pilots, :input_factions, :input_actions, :ships, :pilots, :factions, :actions
 
     def translate_pilots
       @ships = []
       @pilots = []
       @input_pilots.each { |input_pilot| extract_ships_and_pilots(input_pilot) }
+    end
+
+    def translate_actions
+      @actions = input_actions.map { |input_action| { name: input_action['name'] } }
+    end
+
+    def translate_factions
+      @factions = input_factions.map { |input_faction| { name: input_faction['name'] } }
     end
 
     def extract_ships_and_pilots(input_ship)
@@ -38,6 +46,12 @@ module Catalog
     def find_stat(input_ship, stat_name)
       stat = input_ship['stats'].find { |it| it['type'] == stat_name }
       stat ? stat['value'] : 0
+    end
+
+    def translate_all
+      translate_pilots
+      translate_actions
+      translate_factions
     end
   end
 end

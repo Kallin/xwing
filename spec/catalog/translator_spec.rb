@@ -72,12 +72,32 @@ RSpec.describe Catalog::Translator do # rubocop:todo Metrics/BlockLength
           # rubocop:enable Layout/LineLength
         ] }
   end
+  let(:input_action1) do
+    { 'name' => 'Boost', 'xws' => 'boost', 'ffg' => 1 }
+  end
+  let(:input_action2) do
+    { 'name' => 'Focus', 'xws' => 'focus', 'ffg' => 2 }
+  end
+  let(:input_faction1) do
+    { 'name' => 'Rebel Alliance',
+      'xws' => 'rebelalliance',
+      'ffg' => 1,
+      'icon' => 'https://sb-cdn.fantasyflightgames.com/factions/Rebel.png' }
+  end
+  let(:input_faction2) do
+    { 'name' => 'Galactic Empire',
+      'xws' => 'galacticempire',
+      'ffg' => 2,
+      'icon' => 'https://sb-cdn.fantasyflightgames.com/factions/Imperial.png' }
+  end
 
   let(:translator) { described_class.new }
 
   before do
     translator.input_pilots = [input_pilot1, input_pilot2]
-    translator.translate_pilots
+    translator.input_actions = [input_action1, input_action2]
+    translator.input_factions = [input_faction1, input_faction2]
+    translator.translate_all
   end
 
   it 'is able to translate raw loader hash inputs into data ready for DB import for ships' do
@@ -86,5 +106,13 @@ RSpec.describe Catalog::Translator do # rubocop:todo Metrics/BlockLength
 
   it 'is able to translate raw loader hash inputs into data ready for DB import for pilots' do
     expect(translator.pilots.length).to be 5
+  end
+
+  it 'is able to translate raw loader hash inputs into data ready for DB import for factions' do
+    expect(translator.factions.length).to be 2
+  end
+
+  it 'is able to translate raw loader hash inputs into data ready for DB import for actions' do
+    expect(translator.actions.length).to be 2
   end
 end

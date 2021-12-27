@@ -25,4 +25,8 @@ RSpec.describe Catalog::Loader do
   it 'is able to load and parse quick_builds input files' do
     expect(loader.input_quick_builds.length).to be > 10
   end
+
+  it 'is able to load and parse factions input files' do
+    expect(loader.input_factions.length).to be > 5
+  end
 end

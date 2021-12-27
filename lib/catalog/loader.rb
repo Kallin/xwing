@@ -2,10 +2,10 @@
 
 module Catalog
   class Loader
-    attr_accessor :input_pilots, :input_upgrades, :input_actions, :input_quick_builds
+    attr_accessor :input_pilots, :input_upgrades, :input_actions, :input_quick_builds, :input_factions
 
     def collect_entities_from_input_files
-      %w[pilots actions quick-builds upgrades].each do |entity_type|
+      %w[pilots actions quick-builds upgrades actions factions].each do |entity_type|
         folder_path = build_catalog_path(entity_type)
         entity_type_underscored = entity_type.sub('-', '_')
         collect_entities_from_json(folder_path, entity_type_underscored)

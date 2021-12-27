@@ -21,5 +21,8 @@ Layout/LineLength:
 Style/Documentation:
   Enabled: false
 
+MultipleMemoizedHelpers:
+  Enabled: false
+
 Layout/EndOfLine:
   EnforcedStyle: lf
