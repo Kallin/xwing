@@ -7,7 +7,7 @@ module Catalog
     def translate_pilots
       @ships = []
       @pilots = []
-      @input_pilots.each { |input_pilot| extract_ships_and_pilots(input_pilot) }
+      @input_pilots.each { |input_pilot| extract_ship_and_pilots(input_pilot) }
     end
 
     def translate_actions
@@ -18,8 +18,8 @@ module Catalog
       @factions = input_factions.map { |input_faction| { name: input_faction['name'] } }
     end
 
-    def extract_ships_and_pilots(input_ship)
-      extract_ships(input_ship)
+    def extract_ship_and_pilots(input_ship)
+      extract_ship(input_ship)
       extract_pilots(input_ship)
     end
 
@@ -32,10 +32,19 @@ module Catalog
       end
     end
 
-    def extract_ships(input_ship)
-      @ships << {
+    def extract_ship(input_ship)
+      existing_ship = @ships.find { |ship| ship[:name] == input_ship['name'] }
+      if existing_ship
+        existing_ship[:factions] << input_ship['faction']
+      else
+        @ships << build_ship(input_ship)
+      end
+    end
+
+    def build_ship(input_ship)
+      {
         name: input_ship['name'],
-        faction: input_ship['faction'],
+        factions: [input_ship['faction']],
         agility: find_stat(input_ship, 'agility'),
         hull: find_stat(input_ship, 'hull'),
         shields: find_stat(input_ship, 'shields'),

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require './lib/catalog/loader'
+require './lib/catalog/reader'
 
 RSpec.describe Catalog::Loader do
   let(:loader) { described_class.new }

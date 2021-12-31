@@ -29,3 +29,6 @@ Layout/EndOfLine:
 
 Metrics/BlockLength:
   IgnoredMethods: [ 'describe', 'context' ]
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
