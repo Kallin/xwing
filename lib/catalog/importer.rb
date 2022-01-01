@@ -2,12 +2,14 @@
 
 require_relative 'reader'
 require_relative 'translator'
+require_relative 'upgrade_types'
 
 module Catalog
   class Importer
-    attr_accessor :input_ships, :input_actions, :input_factions, :input_pilots
+    attr_accessor :input_ships, :input_actions, :input_factions, :input_pilots, :input_upgrade_types
 
     def import_all
+      import_upgrade_types
       import_factions
       import_actions
       setup_and_import_ships
@@ -31,7 +33,7 @@ module Catalog
     end
 
     def delete_all
-      [Faction, Action, Ship].each(&:destroy_all)
+      [Faction, Action, Ship, UpgradeType, Pilot].each(&:destroy_all)
     end
 
     def setup_inputs_from_loader
@@ -63,13 +65,26 @@ module Catalog
       loader
     end
 
+    def setup_upgrade_types
+      @input_upgrade_types = UpgradeTypes.all_upgrade_types
+    end
+
+    def setup_manual_inputs
+      setup_upgrade_types
+    end
+
     def refresh_all
       delete_all
+      setup_manual_inputs
       setup_inputs_from_loader
       import_all
     end
 
     private
+
+    def import_upgrade_types
+      UpgradeType.create!(input_upgrade_types)
+    end
 
     def import_pilots
       Pilot.create!(input_pilots)

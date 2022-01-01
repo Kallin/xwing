@@ -50,7 +50,15 @@ RSpec.describe Catalog::Importer do
     ]
   end
 
+  let(:input_upgrade_types) do
+    [
+      { name: 'upgrade_type1' },
+      { name: 'upgrade_type2' }
+    ]
+  end
+
   before do
+    importer.input_upgrade_types = input_upgrade_types
     importer.input_ships = input_ships
     importer.input_actions = input_actions
     importer.input_factions = input_factions
@@ -72,5 +80,9 @@ RSpec.describe Catalog::Importer do
 
   it 'is able to import pilots' do
     expect(Pilot.count).to be == 3
+  end
+
+  it 'is able to import upgrade types' do
+    expect(UpgradeType.count).to be == 2
   end
 end
