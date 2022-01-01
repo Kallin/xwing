@@ -8,8 +8,14 @@ RSpec.describe Catalog::Importer do
 
   let(:input_ships) do
     [
-      { name: 'ship1' },
-      { name: 'ship2' }
+      {
+        name: 'ship1',
+        factions: %w[faction1 faction2]
+      },
+      {
+        name: 'ship2',
+        factions: ['faction1']
+      }
     ]
   end
 
@@ -30,21 +36,19 @@ RSpec.describe Catalog::Importer do
   before do
     importer.input_ships = input_ships
     importer.input_actions = input_actions
-    importer.input_factions = input_actions
+    importer.input_factions = input_factions
+    importer.import_all
   end
 
   it 'is able to import ships' do
-    importer.import_ships
     expect(Ship.count).to be == 2
   end
 
   it 'is able to import actions' do
-    importer.import_actions
     expect(Action.count).to be == 2
   end
 
   it 'is able to import factions' do
-    importer.import_factions
     expect(Faction.count).to be == 2
   end
 end
