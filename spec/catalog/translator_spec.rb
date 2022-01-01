@@ -77,20 +77,35 @@ RSpec.describe Catalog::Translator do
         ] }
   end
 
+  let(:input_upgrade) do
+    { 'name' => '"Chopper"',
+      'limited' => 1,
+      'xws' => 'chopper',
+      'sides' =>
+        [{ 'title' => '"Chopper"', 'type' => 'Astromech',
+           'ability' => 'Action: Spend 1 non-recurring [Charge] from another equipped upgrade to recover 1 shield. Action: Spend 2 shields to recover 1 non-recurring [Charge] on an equipped upgrade.', 'slots' => ['Astromech'], 'image' => 'https://sb-cdn.fantasyflightgames.com/card_images/Card_Upgrade_99.png', 'ffg' => 323, 'artwork' => 'https://squadbuilder.fantasyflightgames.com/card_art/Card_art_XW_U_99.jpg' }],
+      'cost' => { 'value' => 2 },
+      'restrictions' => [{ 'factions' => ['Rebel Alliance'] }],
+      'hyperspace' => false }
+  end
+
   # rubocop:enable Layout/LineLength
 
   let(:input_action1) do
     { 'name' => 'Boost', 'xws' => 'boost', 'ffg' => 1 }
   end
+
   let(:input_action2) do
     { 'name' => 'Focus', 'xws' => 'focus', 'ffg' => 2 }
   end
+
   let(:input_faction1) do
     { 'name' => 'Rebel Alliance',
       'xws' => 'rebelalliance',
       'ffg' => 1,
       'icon' => 'https://sb-cdn.fantasyflightgames.com/factions/Rebel.png' }
   end
+
   let(:input_faction2) do
     { 'name' => 'Galactic Empire',
       'xws' => 'galacticempire',
@@ -104,6 +119,7 @@ RSpec.describe Catalog::Translator do
     translator.input_pilots = [input_pilot1, input_pilot2, input_pilot3]
     translator.input_actions = [input_action1, input_action2]
     translator.input_factions = [input_faction1, input_faction2]
+    translator.input_upgrades = [input_upgrade]
     translator.translate_all
   end
 
@@ -121,6 +137,10 @@ RSpec.describe Catalog::Translator do
 
   it 'is able to translate raw loader hash inputs into data ready for DB import for actions' do
     expect(translator.actions.length).to be 2
+  end
+
+  it 'is able to translate raw loader hash inputs into data ready for DB import for upgrades' do
+    expect(translator.upgrades.length).to be 1
   end
 
   it 'is able to add factions to previously found ships for multi-faction ships' do

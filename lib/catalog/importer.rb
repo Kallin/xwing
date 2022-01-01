@@ -6,15 +6,25 @@ require_relative 'upgrade_types'
 
 module Catalog
   class Importer
-    attr_accessor :input_ships, :input_actions, :input_factions, :input_pilots, :input_upgrade_types
+    attr_accessor :input_ships, :input_actions, :input_factions, :input_pilots, :input_upgrade_types, :input_upgrades
+
+    def refresh_all
+      delete_all
+      setup_manual_inputs
+      setup_inputs_from_loader
+      import_all
+    end
 
     def import_all
       import_upgrade_types
+      setup_and_import_upgrades
       import_factions
       import_actions
       setup_and_import_ships
       setup_and_import_pilots
     end
+
+    private
 
     def setup_and_import_ships
       @input_ships.each do |input_ship|
@@ -32,8 +42,19 @@ module Catalog
       import_pilots
     end
 
+    def import_upgrades
+      Upgrade.create!(input_upgrades)
+    end
+
+    def setup_and_import_upgrades
+      @input_upgrades.each do |input_upgrade|
+        input_upgrade[:upgrade_types] = UpgradeType.where(name: input_upgrade[:upgrade_types])
+      end
+      import_upgrades
+    end
+
     def delete_all
-      [Faction, Action, Ship, UpgradeType, Pilot].each(&:destroy_all)
+      [Faction, Action, Ship, UpgradeType, Upgrade, Pilot].each(&:destroy_all)
     end
 
     def setup_inputs_from_loader
@@ -47,20 +68,22 @@ module Catalog
       @input_factions = translator.factions
       @input_ships = translator.ships
       @input_pilots = translator.pilots
+      @input_upgrades = translator.upgrades
     end
 
-    def run_translator(loader)
+    def run_translator(reader)
       translator = Catalog::Translator.new
-      translator.input_pilots = loader.input_pilots
-      translator.input_actions = loader.input_actions
-      translator.input_factions = loader.input_factions
+      translator.input_pilots = reader.input_pilots
+      translator.input_actions = reader.input_actions
+      translator.input_factions = reader.input_factions
+      translator.input_upgrades = reader.input_upgrades
 
       translator.translate_all
       translator
     end
 
     def run_loader
-      loader = Catalog::Loader.new
+      loader = Catalog::Reader.new
       loader.collect_entities_from_input_files
       loader
     end
@@ -72,15 +95,6 @@ module Catalog
     def setup_manual_inputs
       setup_upgrade_types
     end
-
-    def refresh_all
-      delete_all
-      setup_manual_inputs
-      setup_inputs_from_loader
-      import_all
-    end
-
-    private
 
     def import_upgrade_types
       UpgradeType.create!(input_upgrade_types)

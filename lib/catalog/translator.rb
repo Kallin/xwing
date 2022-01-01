@@ -2,7 +2,8 @@
 
 module Catalog
   class Translator
-    attr_accessor :input_pilots, :input_factions, :input_actions, :ships, :pilots, :factions, :actions
+    attr_accessor :input_pilots, :input_factions, :input_actions, :input_upgrades, :ships, :pilots, :factions,
+                  :actions, :upgrades
 
     def translate_pilots
       @ships = []
@@ -16,6 +17,12 @@ module Catalog
 
     def translate_factions
       @factions = input_factions.map { |input_faction| { name: input_faction['name'] } }
+    end
+
+    def translate_upgrades
+      @upgrades = input_upgrades.map do |input_upgrade|
+        { name: input_upgrade['name'], upgrade_types: input_upgrade['sides'][0]['slots'] }
+      end
     end
 
     def extract_ship_and_pilots(input_ship)
@@ -62,6 +69,7 @@ module Catalog
       translate_pilots
       translate_actions
       translate_factions
+      translate_upgrades
     end
   end
 end

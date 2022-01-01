@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Catalog
-  class Loader
+  class Reader
     attr_accessor :input_pilots, :input_upgrades, :input_actions, :input_quick_builds, :input_factions
 
     def collect_entities_from_input_files
