@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_191405) do
+ActiveRecord::Schema.define(version: 2022_01_01_191654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 2021_12_31_191405) do
     t.bigint "faction_id", null: false
   end
 
+  create_table "pilots", force: :cascade do |t|
+    t.string "name"
+    t.bigint "ship_id", null: false
+    t.integer "initiative"
+    t.boolean "limited"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ship_id"], name: "index_pilots_on_ship_id"
+  end
+
   create_table "ship_counts", force: :cascade do |t|
     t.bigint "ship_id", null: false
     t.bigint "collection_id", null: false
@@ -97,6 +107,7 @@ ActiveRecord::Schema.define(version: 2021_12_31_191405) do
 
   add_foreign_key "collections", "users"
   add_foreign_key "comments", "articles"
+  add_foreign_key "pilots", "ships"
   add_foreign_key "ship_counts", "collections"
   add_foreign_key "ship_counts", "ships"
 end

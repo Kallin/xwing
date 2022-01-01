@@ -48,7 +48,8 @@ module Catalog
         agility: find_stat(input_ship, 'agility'),
         hull: find_stat(input_ship, 'hull'),
         shields: find_stat(input_ship, 'shields'),
-        energy: find_stat(input_ship, 'energy')
+        energy: find_stat(input_ship, 'energy'),
+        attack: find_stat(input_ship, 'attack')
       }
     end
 

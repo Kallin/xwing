@@ -19,6 +19,23 @@ RSpec.describe Catalog::Importer do
     ]
   end
 
+  let(:input_pilots) do
+    [
+      {
+        name: 'pilot1',
+        ship: 'ship1'
+      },
+      {
+        name: 'pilot2',
+        ship: 'ship1'
+      },
+      {
+        name: 'pilot3',
+        ship: 'ship2'
+      }
+    ]
+  end
+
   let(:input_actions) do
     [
       { name: 'action1' },
@@ -37,6 +54,7 @@ RSpec.describe Catalog::Importer do
     importer.input_ships = input_ships
     importer.input_actions = input_actions
     importer.input_factions = input_factions
+    importer.input_pilots = input_pilots
     importer.import_all
   end
 
@@ -50,5 +68,9 @@ RSpec.describe Catalog::Importer do
 
   it 'is able to import factions' do
     expect(Faction.count).to be == 2
+  end
+
+  it 'is able to import pilots' do
+    expect(Pilot.count).to be == 3
   end
 end

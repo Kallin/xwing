@@ -17,7 +17,6 @@ module Catalog
 
     def collect_entities_from_json(path, entity_type)
       input_files = Dir["#{path}/**/*.json"]
-      # a.send(:c=, b.send(:c))
       json_entities = input_files.map do |input_file|
         file_content = File.read(input_file)
         JSON.parse(file_content)
