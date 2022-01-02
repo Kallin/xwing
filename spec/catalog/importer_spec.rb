@@ -23,7 +23,8 @@ RSpec.describe Catalog::Importer do
     [
       {
         name: 'pilot1',
-        ship: 'ship1'
+        ship: 'ship1',
+        xws_id: 'p1s1'
       },
       {
         name: 'pilot2',
@@ -59,8 +60,14 @@ RSpec.describe Catalog::Importer do
 
   let(:input_upgrades) do
     [
-      { name: 'upgrade1', upgrade_types: ['upgrade_type1'] },
-      { name: 'upgrade2', upgrade_types: %w[upgrade_type1 upgrade_type2] }
+      { name: 'upgrade1', upgrade_types: ['upgrade_type1'], xws_id: 'ug1' },
+      { name: 'upgrade2', upgrade_types: %w[upgrade_type1 upgrade_type2], xws_id: 'ug2' }
+    ]
+  end
+
+  let(:input_quick_builds) do
+    [
+      { pilot: 'p1s1', upgrades: %w[ug1 ug2] }
     ]
   end
 
@@ -71,6 +78,7 @@ RSpec.describe Catalog::Importer do
     importer.input_actions = input_actions
     importer.input_factions = input_factions
     importer.input_pilots = input_pilots
+    importer.input_quick_builds = input_quick_builds
     importer.import_all
   end
 
@@ -96,5 +104,9 @@ RSpec.describe Catalog::Importer do
 
   it 'is able to import upgrades' do
     expect(Upgrade.count).to be == 2
+  end
+
+  it 'is able to import quick builds' do
+    expect(QuickBuild.count).to be == 1
   end
 end

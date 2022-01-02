@@ -2,8 +2,8 @@
 
 module Catalog
   class Translator
-    attr_accessor :input_pilots, :input_factions, :input_actions, :input_upgrades, :ships, :pilots, :factions,
-                  :actions, :upgrades
+    attr_accessor :input_pilots, :input_factions, :input_actions, :input_upgrades, :input_quick_builds,
+                  :ships, :pilots, :factions, :actions, :upgrades, :quick_builds
 
     def translate_pilots
       @ships = []
@@ -21,7 +21,16 @@ module Catalog
 
     def translate_upgrades
       @upgrades = input_upgrades.map do |input_upgrade|
-        { name: input_upgrade['name'], upgrade_types: input_upgrade['sides'][0]['slots'] }
+        { name: input_upgrade['name'], xws_id: input_upgrade['xws'], upgrade_types: input_upgrade['sides'][0]['slots'] }
+      end
+    end
+
+    def translate_quick_builds
+      @quick_builds = input_quick_builds.map do |input_quick_build|
+        pilot = input_quick_build['pilots'][0]
+        upgrades = []
+        upgrades = pilot['upgrades'].values.flatten unless pilot['upgrades'].nil?
+        { threat: input_quick_build['threat'], pilot: pilot['id'], upgrades: upgrades }
       end
     end
 
@@ -34,7 +43,8 @@ module Catalog
       input_ship['pilots'].each do |actual_input_pilot|
         @pilots << {
           name: actual_input_pilot['name'],
-          ship: input_ship['name']
+          ship: input_ship['name'],
+          xws_id: actual_input_pilot['xws']
         }
       end
     end
@@ -70,6 +80,7 @@ module Catalog
       translate_actions
       translate_factions
       translate_upgrades
+      translate_quick_builds
     end
   end
 end

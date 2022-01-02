@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_01_230244) do
+ActiveRecord::Schema.define(version: 2022_01_02_044108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,21 @@ ActiveRecord::Schema.define(version: 2022_01_01_230244) do
     t.boolean "limited"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "xws_id"
     t.index ["ship_id"], name: "index_pilots_on_ship_id"
+  end
+
+  create_table "quick_builds", force: :cascade do |t|
+    t.bigint "pilot_id", null: false
+    t.integer "threat"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pilot_id"], name: "index_quick_builds_on_pilot_id"
+  end
+
+  create_table "quick_builds_upgrades", id: false, force: :cascade do |t|
+    t.bigint "quick_build_id", null: false
+    t.bigint "upgrade_id", null: false
   end
 
   create_table "ship_counts", force: :cascade do |t|
@@ -90,6 +104,7 @@ ActiveRecord::Schema.define(version: 2022_01_01_230244) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "xws_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,6 +121,7 @@ ActiveRecord::Schema.define(version: 2022_01_01_230244) do
 
   add_foreign_key "collections", "users"
   add_foreign_key "pilots", "ships"
+  add_foreign_key "quick_builds", "pilots"
   add_foreign_key "ship_counts", "collections"
   add_foreign_key "ship_counts", "ships"
 end

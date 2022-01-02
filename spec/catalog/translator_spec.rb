@@ -113,6 +113,12 @@ RSpec.describe Catalog::Translator do
       'icon' => 'https://sb-cdn.fantasyflightgames.com/factions/Imperial.png' }
   end
 
+  let(:input_quick_build) do
+    { 'threat' => 2,
+      'pilots' =>
+        [{ 'id' => 'muse', 'upgrades' => { 'talent' => ['squadleader'], 'tech' => ['advancedoptics'] } }] }
+  end
+
   let(:translator) { described_class.new }
 
   before do
@@ -120,6 +126,7 @@ RSpec.describe Catalog::Translator do
     translator.input_actions = [input_action1, input_action2]
     translator.input_factions = [input_faction1, input_faction2]
     translator.input_upgrades = [input_upgrade]
+    translator.input_quick_builds = [input_quick_build]
     translator.translate_all
   end
 
@@ -141,6 +148,10 @@ RSpec.describe Catalog::Translator do
 
   it 'is able to translate raw loader hash inputs into data ready for DB import for upgrades' do
     expect(translator.upgrades.length).to be 1
+  end
+
+  it 'is able to translate raw loader hash inputs into data ready for DB import for quick-builds' do
+    expect(translator.quick_builds.length).to be 1
   end
 
   it 'is able to add factions to previously found ships for multi-faction ships' do

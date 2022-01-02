@@ -4,9 +4,11 @@ require_relative 'reader'
 require_relative 'translator'
 require_relative 'upgrade_types'
 
+# rubocop:disable Metrics/ClassLength:
 module Catalog
   class Importer
-    attr_accessor :input_ships, :input_actions, :input_factions, :input_pilots, :input_upgrade_types, :input_upgrades
+    attr_accessor :input_ships, :input_actions, :input_factions, :input_pilots, :input_upgrade_types, :input_upgrades,
+                  :input_quick_builds
 
     def refresh_all
       delete_all
@@ -15,6 +17,7 @@ module Catalog
       import_all
     end
 
+    # TODO: let's write a test for this
     def import_all
       import_upgrade_types
       setup_and_import_upgrades
@@ -22,9 +25,24 @@ module Catalog
       import_actions
       setup_and_import_ships
       setup_and_import_pilots
+      setup_and_import_quick_builds
     end
 
     private
+
+    def setup_and_import_quick_builds
+      @input_quick_builds.each do |input_quick_build|
+        input_quick_build[:upgrades] = input_quick_build[:upgrades].map do |upgrade|
+          Upgrade.find_by(xws_id: upgrade)
+        end
+        input_quick_build[:pilot] = Pilot.find_by(xws_id: input_quick_build[:pilot])
+      end
+      import_quick_builds
+    end
+
+    def import_quick_builds
+      QuickBuild.create!(input_quick_builds)
+    end
 
     def setup_and_import_ships
       @input_ships.each do |input_ship|
@@ -69,6 +87,7 @@ module Catalog
       @input_ships = translator.ships
       @input_pilots = translator.pilots
       @input_upgrades = translator.upgrades
+      @input_quick_builds = translator.quick_builds
     end
 
     def run_translator(reader)
@@ -77,6 +96,7 @@ module Catalog
       translator.input_actions = reader.input_actions
       translator.input_factions = reader.input_factions
       translator.input_upgrades = reader.input_upgrades
+      translator.input_quick_builds = reader.input_quick_builds
 
       translator.translate_all
       translator
@@ -117,3 +137,4 @@ module Catalog
     end
   end
 end
+# rubocop:enable Metrics/ClassLength:
