@@ -17,7 +17,6 @@ module Catalog
       import_all
     end
 
-    # TODO: let's write a test for this
     def import_all
       import_upgrade_types
       setup_and_import_upgrades
