@@ -3,6 +3,7 @@
 require 'rails_helper'
 require './lib/catalog/translator'
 
+# rubocop:disable RSpec/IndexedLet
 RSpec.describe Catalog::Translator do
   let(:input_pilot1) do
     { 'name' => 'Gozanti-class Cruiser',
@@ -159,3 +160,4 @@ RSpec.describe Catalog::Translator do
     expect(y_wing[:factions].size).to be 2
   end
 end
+# rubocop:enable RSpec/IndexedLet
