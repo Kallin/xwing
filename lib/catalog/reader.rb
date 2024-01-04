@@ -12,7 +12,7 @@ module Catalog
       end
 
       # quick builds has a funny format
-      @input_quick_builds = input_quick_builds.map { |it| it['quick-builds'] }.flatten
+      @input_quick_builds = input_quick_builds.pluck('quick-builds').flatten
     end
 
     def collect_entities_from_json(path, entity_type)
@@ -22,7 +22,7 @@ module Catalog
         JSON.parse(file_content)
       end.flatten
 
-      send "input_#{entity_type}=", json_entities
+      send :"input_#{entity_type}=", json_entities
     end
 
     def build_catalog_path(folder)

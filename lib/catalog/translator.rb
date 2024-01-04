@@ -30,7 +30,7 @@ module Catalog
         pilot = input_quick_build['pilots'][0]
         upgrades = []
         upgrades = pilot['upgrades'].values.flatten unless pilot['upgrades'].nil?
-        { threat: input_quick_build['threat'], pilot: pilot['id'], upgrades: upgrades }
+        { threat: input_quick_build['threat'], pilot: pilot['id'], upgrades: }
       end
     end
 

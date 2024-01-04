@@ -83,30 +83,30 @@ RSpec.describe Catalog::Importer do
   end
 
   it 'is able to import ships' do
-    expect(Ship.count).to be == 2
+    expect(Ship.count).to eq 2
   end
 
   it 'is able to import actions' do
-    expect(Action.count).to be == 2
+    expect(Action.count).to eq 2
   end
 
   it 'is able to import factions' do
-    expect(Faction.count).to be == 2
+    expect(Faction.count).to eq 2
   end
 
   it 'is able to import pilots' do
-    expect(Pilot.count).to be == 3
+    expect(Pilot.count).to eq 3
   end
 
   it 'is able to import upgrade types' do
-    expect(UpgradeType.count).to be == 2
+    expect(UpgradeType.count).to eq 2
   end
 
   it 'is able to import upgrades' do
-    expect(Upgrade.count).to be == 2
+    expect(Upgrade.count).to eq 2
   end
 
   it 'is able to import quick builds' do
-    expect(QuickBuild.count).to be == 1
+    expect(QuickBuild.count).to eq 1
   end
 end
