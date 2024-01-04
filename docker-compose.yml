@@ -9,3 +9,13 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - '5500:5432'
+
+  mongo:
+    image: mongo
+    restart: always
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
