@@ -13,6 +13,8 @@ module Catalog
 
       # quick builds has a funny format
       @input_quick_builds = input_quick_builds.pluck('quick-builds').flatten
+
+      nil
     end
 
     def collect_entities_from_json(path, entity_type)
@@ -26,7 +28,7 @@ module Catalog
     end
 
     def build_catalog_path(folder)
-      Rails.root.join('db', 'catalog', 'xwing-data2', folder)
+      Rails.root.join('xwing-data', 'data', folder)
     end
   end
 end
